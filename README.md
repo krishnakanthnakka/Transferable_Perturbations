@@ -1,7 +1,7 @@
 
 ## Learning Transferable Adversarial Perturbations
 
-This is an official release of the paper **Learning Transferable Adversarial Perturbations**. I'm going through unfortunate medical emergency of a fami;ly member. It will be updated by December 12 week-end. Thank you all for understanding.
+This is an official release of the paper **Learning Transferable Adversarial Perturbations**. I'm going through unfortunate medical emergency of a family member. It will be updated by December 12 week-end. Thank you all for understanding.
 
 
 
