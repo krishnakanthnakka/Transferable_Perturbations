@@ -1,7 +1,7 @@
 
 ## Learning Transferable Adversarial Perturbations
 
-This is an official release of the paper **Learning Transferable Adversarial Perturbations**. The code is in early release and will be updated by December first week.
+This is an official release of the paper **Learning Transferable Adversarial Perturbations**. I'm going through unfortunate medical emergency of my wife. It will be updated by December 12 week-end. Thank you all for understanding.
 
 
 
