@@ -1,0 +1,15 @@
+MODEL:
+  NUM_CLASSES: 9
+INPUT:
+  IMAGE_SIZE: 300
+DATASETS:
+  TRAIN: ("foggycityscapes_trainval",)
+  TEST: ("foggycityscapes_test",)
+SOLVER:
+  MAX_ITER: 50000
+  LR_STEPS: [10000, 20000]
+  GAMMA: 0.1
+  BATCH_SIZE: 32
+  LR: 1e-3
+
+OUTPUT_DIR: 'vgg_ssd300_foggycityscapes'
