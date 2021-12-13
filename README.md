@@ -73,7 +73,6 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 ### Results on ImageNet models
 
 1. We report fooling rate metric (percentage of images for which label is flipped) on ImageNet5K val-set.
-
     | Train  | VGG16 | ResNet152 | Inceptionv3 | DenseNet121 | SqueezeNet1.1 | ShuffleNet  | MNASNet  |    MobileNet |
     | :---:  | :---: | :---:     | :---:       | :---:       | :---:      | :---:       |  :---:   |       :---:  |
     |  VGG16| 99.32% |68.38%    | 46.60%        |84.68%      | 86.52%     | 67.84%      | 90.44%   |   60.08%     |
@@ -84,7 +83,6 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 
 1. To run SSD experiments, first enter the  ```SSD``` folder and set paths to SSD library
-
    ```bash
    cd SSD
    source envs.sh
@@ -123,6 +121,11 @@ This is an official release of the paper **Learning Transferable Adversarial Per
     |SqueezeNet1.1|  13.1|   10.8|   11.5 |   6.19 |
 
 
+
+
+## Training
+
+1.  ToDo
 
 ## Citation
 
