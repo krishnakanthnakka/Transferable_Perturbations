@@ -10,33 +10,35 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 ## Installation
 
-It requires the following OpenMMLab packages:
+1. It is tested with the following  packages:
 
-- PyTorch: 1.7.1+cu101
-- Python: 3.6.9
-- Torchvision: 0.8.2+cu101
-- CUDA: 10.1
-- CUDNN: 7603
-- NumPy: 1.18.1
-- PIL: 7.0.0
+    ``` text
+      PyTorch: 1.7.1+cu101
+      Python: 3.6.9
+      Torchvision: 0.8.2+cu101
+      CUDA: 10.1
+      CUDNN: 7603
+      NumPy: 1.18.1
+      PIL: 7.0.0
+   ```
 
-1. Download source code from GitHub
+2. Download source code from GitHub
    ```
     git clone https://github.com/krishnakanthnakka/Transferable_Perturbations.git
    ```
-2. Create [conda](https://docs.conda.io/en/latest/miniconda.html) virtual-environment
+3. Create [conda](https://docs.conda.io/en/latest/miniconda.html) virtual-environment
    ```
     conda create --name LTP python=3.6.9
    ```
-3. Activate conda environment
+4. Activate conda environment
    ```
     source activate LTP
    ```
-4. Install requirements
+5. Install requirements
    ```
     pip install -r requirements.txt
     ```
-5. Download pretrained generator checkpoints from our model zoo ([GoogleDrive](https://drive.google.com/drive/folders/1QkJh9EPGyq_LnzzU5mzpkBNhJFxIxGMu?usp=sharing)) and place them in the root folder
+6. Download pretrained generator checkpoints from our model zoo ([GoogleDrive](https://drive.google.com/drive/folders/1QkJh9EPGyq_LnzzU5mzpkBNhJFxIxGMu?usp=sharing)) and place them in the root folder
 
 
 
@@ -71,6 +73,7 @@ It requires the following OpenMMLab packages:
 ### Results on ImageNet models
 
 1. We report fooling rate metric (percentage of images for which label is flipped) on ImageNet5K val-set.
+
     | Train  | VGG16 | ResNet152 | Inceptionv3 | DenseNet121 | SqueezeNet1.1 | ShuffleNet  | MNASNet  |    MobileNet |
     | :---:  | :---: | :---:     | :---:       | :---:       | :---:      | :---:       |  :---:   |       :---:  |
     |  VGG16| 99.32% |68.38%    | 46.60%        |84.68%      | 86.52%     | 67.84%      | 90.44%   |   60.08%     |
@@ -81,6 +84,7 @@ It requires the following OpenMMLab packages:
 
 
 1. To run SSD experiments, first enter the  ```SSD``` folder and set paths to SSD library
+
    ```bash
    cd SSD
    source envs.sh
