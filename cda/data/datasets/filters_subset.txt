@@ -1,0 +1,8 @@
+/cvlabdata1/home/krishna/DA/CDA/DUP/CDA/cda/data/datasets/CKA/layer_8_filter_18.jpg 0
+/cvlabdata1/home/krishna/DA/CDA/DUP/CDA/cda/data/datasets/CKA/layer_3_filter_195.jpg 1
+/cvlabdata1/home/krishna/DA/CDA/DUP/CDA/cda/data/datasets/CKA/layer_8_filter_226.jpg 2
+/cvlabdata1/home/krishna/DA/CDA/DUP/CDA/cda/data/datasets/CKA/layer_3_filter_193.jpg 3
+/cvlabdata1/home/krishna/DA/CDA/DUP/CDA/cda/data/datasets/CKA/layer_2_filter_343.jpg 4
+/cvlabdata1/home/krishna/DA/CDA/DUP/CDA/cda/data/datasets/CKA/layer_15_filter_69.jpg 5
+/cvlabdata1/home/krishna/DA/CDA/DUP/CDA/cda/data/datasets/CKA/layer_8_filter_108.jpg 6
+/cvlabdata1/home/krishna/DA/CDA/DUP/CDA/cda/data/datasets/CKA/layer_8_filter_17.jpg 7

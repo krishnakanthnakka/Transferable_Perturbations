@@ -39,11 +39,11 @@ It requires the following OpenMMLab packages:
 
 ### Data preparation
 
-1. The data structure of ```ImageNet1M``` looks like below:
+1. The data structure of ```ImageNet``` looks like below:
 
     ```text
-    /path/to/ImageNet/
-    ├── ImageNet1M
+    /datasets/
+    ├── imagenet
     │   ├── train
     │   │   ├── n02328150
     │   │   ├── n03447447
@@ -52,31 +52,53 @@ It requires the following OpenMMLab packages:
     │   │   ├── n03447447
     ```
 
+2. We evaluate on 5K random samples from ImageNet val-set. We release the 5K samples in text file at ```cda/data/datasets/imagenet5k_val.txt```
+
 
 ## Testing on Cross-Model Setting
 
+1. Set all environmental paths and other packages in path by ```source envs.sh```
 
-1.We report fooling rate metric (percentage of images for which label is flipped) on ImageNet5K val-set.
+2. For attacking PyTorch Image recognition models using the generator trained on squeezenet discriminator and imagenet dataset:
+   ```bash
+   bash run_exps.sh  squeezenet1_1 imagenet feat
+   ```
 
 
-| Train  | VGG16 | ResNet152 | Inceptionv3 | DenseNet121 | SqueezeNet1.1 | ShuffleNet  | MNASNet  |    MobileNet |
-| :---:  | :---: | :---:     | :---:       | :---:       | :---:      | :---:       |  :---:   |       :---:  |
-|  VGG16| 99.32% |68.38%    | 46.60%        |84.68%      | 86.52%     | 67.84%      | 90.44%   |   60.08%     |
-|ResNet152|99.10%|  99.72%  | 74.90%        |  98.82%   | 89.12%        | 96.48%    | 94.00%    |86.44%         |
-|SqueezeNet1.1|  98.52%|   86.67%|   75.54% |   93.57%  |  92.47% |   89.44%        | 92.91%    |   82.75%|
+### Results on ImageNet models
+
+1. We report fooling rate metric (percentage of images for which label is flipped) on ImageNet5K val-set.
+    | Train  | VGG16 | ResNet152 | Inceptionv3 | DenseNet121 | SqueezeNet1.1 | ShuffleNet  | MNASNet  |    MobileNet |
+    | :---:  | :---: | :---:     | :---:       | :---:       | :---:      | :---:       |  :---:   |       :---:  |
+    |  VGG16| 99.32% |68.38%    | 46.60%        |84.68%      | 86.52%     | 67.84%      | 90.44%   |   60.08%     |
+    |SqueezeNet1.1|  96.06%|   76.44%|   70.66% |   88.70%  |  99.68% |   90.06%        | 90.06%    |   84.58%|
 
 
 ## Testing on Cross-Task Setting on SSD
 
 
-1. To run SSD experiments, first enter the  ```SSD``` folder
+1. To run SSD experiments, first enter the  ```SSD``` folder and set paths to SSD library
    ```bash
    cd SSD
+   source envs.sh
    ```
 2. Download and place the trained SSD models from [GoogleDrive](https://drive.google.com/drive/folders/13TLIHLjDh4IeSiA5vXIqnLpCOwNdzxI9?usp=sharing) and place in this SSD folder.
    We used publicly available [SSD](https://github.com/lufficc/SSD) implementation to train models for 120K iterations.
 
 3. Prepare the VOC dataset in ```datasets/2007``` and ```datasets/2012```
+
+    ```text
+        /SSD/datasets/
+        ├── VOC2007
+        │   ├── JPEGImages
+        │   ├── ImageSets
+        │   ├── Annotations
+        │   ├── .....
+        ├── VOC2012
+        │   ├── JPEGImages
+        │   ├── ImageSets
+        │   ├── Annotations
+        │   ├── .....
 
 4. For attacking SSD models using the generator trained on squeezenet discriminator and imagenet dataset:
    ```bash
@@ -90,14 +112,13 @@ It requires the following OpenMMLab packages:
     | Train  | VGG16 | ResNet50 | EfficientNet | MobileNet |
     | :---:  | :---: | :---:     | :---:       | :---:     |
     |Clean|  68.1|   66.1|   61.1|   55.4 |
+    |VGG16|  8.30|   11.8|   11.4 |   9.12 |
     |SqueezeNet1.1|  13.1|   10.8|   11.5 |   6.19 |
 
 
-## ToDO
+## ToDo
 
-- Continue updating the repository
-
-
+- training scripts
 
 
 ## Citation
