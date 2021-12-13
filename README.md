@@ -4,6 +4,9 @@
 This is an official release of the paper **Learning Transferable Adversarial Perturbations**. The code is in early release and will be updated soon
 
 
+## ToDo
+
+- training scripts
 
 ## Installation
 
@@ -115,10 +118,6 @@ It requires the following OpenMMLab packages:
     |VGG16|  8.30|   11.8|   11.4 |   9.12 |
     |SqueezeNet1.1|  13.1|   10.8|   11.5 |   6.19 |
 
-
-## ToDo
-
-- training scripts
 
 
 ## Citation
