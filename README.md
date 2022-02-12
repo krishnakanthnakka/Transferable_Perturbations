@@ -65,6 +65,8 @@ This is an official release of the paper **Learning Transferable Adversarial Per
    bash scripts/imagenet/squeezenet.sh
    ```
 
+2. To train generator against on other datasets, create
+
 
 ## Testing on Cross-Model Setting
 
