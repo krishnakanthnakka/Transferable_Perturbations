@@ -70,7 +70,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
    bash scripts/imagenet/squeezenet.sh
    ```
 
-2. To train generator against onother datasets, prepare the config file at ```cda/config/``` and put the images file at ```cda/data/datasets/```
+2. To train generator against another datasets, prepare the config file at ```cda/config/``` and put the images file at ```cda/data/datasets/```
 
 
 ## Testing on Cross-Model Setting
