@@ -153,3 +153,8 @@ This is an official release of the paper **Learning Transferable Adversarial Per
     booktitle={NeurIPS},
 }
 ```
+
+
+## Acknowledgements
+
+This codebase is borrowed from multiple sources. We thank owner of [SSD](https://github.com/lufficc/SSD) for building a highly-modular pipeline.
