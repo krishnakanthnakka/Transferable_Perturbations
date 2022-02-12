@@ -77,7 +77,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 1. Set all environmental paths and other packages in path by ```source envs.sh```
 
-2. For attacking PyTorch Image recognition models using the generator trained on squeezenet discriminator and imagenet dataset:
+2. For attacking PyTorch Image recognition models using the generator trained on ```squeezenet``` discriminator and ```imagenet``` dataset:
    ```bash
    bash run_exps.sh  squeezenet1_1 imagenet feat
    ```
@@ -118,7 +118,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
         │   ├── Annotations
         │   ├── .....
 
-4. For attacking SSD models using the generator trained on squeezenet discriminator and imagenet dataset:
+4. For attacking SSD models using the generator trained on ```squeezenet``` discriminator and ```imagenet``` dataset:
    ```bash
    bash run_exps.sh  squeezenet1_1 imagenet feat
    ```
