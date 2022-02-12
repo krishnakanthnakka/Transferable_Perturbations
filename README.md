@@ -51,6 +51,11 @@ This is an official release of the paper **Learning Transferable Adversarial Per
     │   ├── val
     │   │   ├── n02328150
     │   │   ├── n03447447
+    |-- comics
+    |   |-- train
+    |   |   |── All-Star Section Eight
+    |   |   |── Action Comics v2
+
     ```
 
 2. We evaluate on 5K random samples from ImageNet val-set. We release the 5K samples in text file at ```cda/data/datasets/imagenet5k_val.txt```
