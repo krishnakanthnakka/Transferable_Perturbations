@@ -78,7 +78,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
    ```bash
    bash run_exps.sh  squeezenet1_1 imagenet feat
 
-   # Similarily to eval other generators
+   # Similarily to attack with other generators
    bash run_exps.sh  vgg16 imagenet feat
    bash run_exps.sh  densenet121 imagenet feat
    bash run_exps.sh  resnet152 imagenet feat
@@ -124,6 +124,12 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 4. For attacking SSD models using the generator trained on ```squeezenet``` discriminator and ```imagenet``` dataset:
    ```bash
    bash run_exps.sh  squeezenet1_1 imagenet feat
+
+    # Similarily to attack with other generators
+   bash run_exps.sh  vgg16 imagenet feat
+   bash run_exps.sh  densenet121 imagenet feat
+   bash run_exps.sh  resnet152 imagenet feat
+   bash run_exps.sh  inception imagenet feat
    ```
 
 ### Results on SSD detectors
