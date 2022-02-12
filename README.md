@@ -66,7 +66,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 ### Training Generators
 
-1. For example, we use folllowing command to train generator against ```squeezenet``` classfier pretrained on ```imagenet`` using feature separation loss
+1. For example, we use following command to train generator against ```squeezenet``` classfier pretrained on ```imagenet`` using feature separation loss
    ```bash
    bash scripts/imagenet/squeezenet.sh
    ```
@@ -81,6 +81,13 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 2. For attacking PyTorch Image recognition models using the generator trained on ```squeezenet``` discriminator and ```imagenet``` dataset:
    ```bash
    bash run_exps.sh  squeezenet1_1 imagenet feat
+
+   # Similarily to eval other generators
+   bash run_exps.sh  vgg16 imagenet feat
+   bash run_exps.sh  densenet121 imagenet feat
+   bash run_exps.sh  resnet152 imagenet feat
+   bash run_exps.sh  inception imagenet feat
+
    ```
 
 
