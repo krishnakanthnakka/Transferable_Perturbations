@@ -15,6 +15,12 @@ class DatasetCatalog:
             "split": "val"
         },
 
+        "imagenet_train": {
+            "data_dir": "imagenet",
+            "images_path": "imagenet_train.txt",
+            "split": "train"
+        },
+
 
     }
 

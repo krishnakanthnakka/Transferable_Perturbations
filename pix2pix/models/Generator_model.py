@@ -9,18 +9,7 @@ from torchvision.utils import save_image
 from cda.engine.inference import do_evaluation, do_evaluation_adv
 from cda.modeling.detector import build_detection_model, build_detection_model_eval
 from cda.modeling.detector.at import AT
-from cda.modeling.detector.loss import attention_loss
-
-
-def de_normalize_fn(t):
-    t = t.clone()
-    mean = [0.485, 0.456, 0.406]
-    std = [0.229, 0.224, 0.225]
-    t[:, 0, :, :] = (t[:, 0, :, :] * std[0]) + mean[0]
-    t[:, 1, :, :] = (t[:, 1, :, :] * std[1]) + mean[1]
-    t[:, 2, :, :] = (t[:, 2, :, :] * std[2]) + mean[2]
-
-    return t
+from cda.modeling.detector.loss import attention_loss, feat_loss_mutliscale_fn
 
 
 def normalize_fn(t):
@@ -31,25 +20,6 @@ def normalize_fn(t):
     t[:, 1, :, :] = (t[:, 1, :, :] - mean[1]) / std[1]
     t[:, 2, :, :] = (t[:, 2, :, :] - mean[2]) / std[2]
     return t
-
-
-def subtract_mean(img, mean):
-
-    out = img.clone()
-    out[:, 0] = img[:, 0] - mean[0]
-    out[:, 1] = img[:, 1] - mean[1]
-    out[:, 2] = img[:, 2] - mean[2]
-    return out
-
-
-def reduce_sum(x, keepdim=True):
-    for a in reversed(range(1, x.dim())):
-        x = x.sum(a, keepdim=keepdim)
-    return x
-
-
-def L2_dist(x, y):
-    return reduce_sum((x - y) ** 2)
 
 
 class GeneratorModel(BaseModel):
@@ -99,15 +69,11 @@ class GeneratorModel(BaseModel):
             self.netG = GeneratorResnet(opt.gen_dropout, opt.data_dim, isTrain=self.isTrain).cuda()
             logger.info("Generator model Without Inception flag")
 
-        if False:
-            logger.info(" Applying Random Normal Initialization!")
-            self.netG.apply(weights_init_normal)
-
-        self.loss_fn, self.SOFTMAX_2D = opt.loss_fn, opt.softmax2D
+        self.loss_fn, self.SOFTMAX_2D = feat_loss_mutliscale_fn, opt.softmax2D
 
         if self.isTrain:
-            logger.info("Loss Type: {}, Loss Fn: {}, SOFTMAX_2D: {}".format(
-                self.opt.loss_type, self.loss_fn.__name__, self.SOFTMAX_2D))
+            logger.info("Loss Type: {},  SOFTMAX_2D: {}".format(
+                self.opt.loss_type, self.SOFTMAX_2D))
 
             for i, (name, layer) in enumerate(self.netG.block1.named_parameters()):
                 logger.info("{}, {}, {}, {}, {}, {}".format(i, name, layer.shape,
@@ -115,7 +81,6 @@ class GeneratorModel(BaseModel):
 
         self.iter = 0
         self.scale = [0, 1]
-        self.attackobjective = opt.attackobjective
         self.cpu_device = torch.device("cpu")
         self.perturbmode = opt.perturbmode
 
@@ -129,51 +94,12 @@ class GeneratorModel(BaseModel):
             self.weight_att = opt.weight_att
             self.weight_feat = opt.weight_feat
             self.cls_margin = opt.cls_margin
-
             self.optimizer_G = torch.optim.Adam(self.netG.parameters(), lr=opt.lr, betas=(opt.beta1, 0.999))
-            #self.optimizer_G = torch.optim.SGD(self.netG.parameters(), lr=1e-3)
-
             self.optimizers.append(self.optimizer_G)
 
-            if self.attackobjective == 'Blind':
-                self.classifier = build_detection_model(
-                    opt.detcfg, opt.act_layer, opt.act_layer_mean).cuda()
-
-                # this block loads model outside of standard PyTorch library
-                if self.opt.train_classifier_weights != '':
-                    logger.info("*** Loading model from :{} *****".format(self.opt.train_classifier_weights))
-                    checkpoint_classifier = torch.load(self.opt.train_classifier_weights)
-
-                    if 'state_dict' in checkpoint_classifier.keys():
-                        logger.info("Saved at epoch: {} with accu: {:.2f}%".format(
-                            checkpoint_classifier['epoch'], checkpoint_classifier['best_acc1'].item()))
-                        self.classifier.load_state_dict(checkpoint_classifier['state_dict'])
-
-                    # this loads the resnet50-adv
-                    elif 'model' in checkpoint_classifier.keys():
-                        logger.info("Saved at epoch: {} ".format(checkpoint_classifier['epoch']))
-                        # self.eval_classifier = torch.nn.DataParallel(self.eval_classifier).cuda()
-                        new_state_dict = {}
-                        for key in checkpoint_classifier['model'].keys():
-                            str_ = key.replace("module.model.", "")
-                            new_state_dict[str_] = checkpoint_classifier['model'][key]
-                        self.classifier.load_state_dict(new_state_dict, strict=False)  # CHANGED DANGER
-
-                    else:
-                        # CHANGED. ADDED RECENTLY
-                        self.classifier.load_state_dict(checkpoint_classifier)
-
-                self.classifier.eval()
-
-            # Latest
-
-            if 0:
-                from torch.utils.tensorboard import SummaryWriter
-                import time
-                timestr = time.strftime("%H_%M_%S")
-                os.makedirs(os.path.join(self.opt.detcfg.OUTPUT_DIR, "run_{}".format(timestr)))
-                self.writer = SummaryWriter(log_dir=os.path.join(
-                    self.opt.detcfg.OUTPUT_DIR, "run_{}".format(timestr)))
+            self.classifier = build_detection_model(
+                opt.detcfg, opt.act_layer, opt.act_layer_mean).cuda()
+            self.classifier.eval()
 
         self.det_mean = opt.detcfg.INPUT.PIXEL_MEAN
         self.eps = opt.eps
@@ -209,10 +135,6 @@ class GeneratorModel(BaseModel):
             torch.max(self.clean1))
         assert torch.min(self.clean1) >= 0, 'Wrong Normalization'
 
-        if 0 and random.uniform(0, 1) > 1.5:
-            self.clean255_OOD = self.generate_OODs(self.clean255).cuda()
-            self.clean255 = torch.cat((self.clean255, self.clean255_OOD), 0)
-
         self.image_ids = input[2]
 
     def forward(self, target_sz=(300, 300)):
@@ -245,30 +167,14 @@ class GeneratorModel(BaseModel):
         self.loss_ce = torch.tensor(0.0)
         self.loss_rl = torch.tensor(0.0)
         self.loss_att = torch.tensor(0.0)
+
         if self.weight_L2 > 1e-6:
             self.criterionL2 = torch.nn.MSELoss()
             self.loss_G_L2 = self.criterionL2(self.adv1,
                                               self.clean1) * self.weight_L2
 
-        # else:
-        #     print("YO")
-
         loss = 0.0
         loss_dict = {}
-
-        if 'rl' in self.opt.loss_type:
-            criterion = torch.nn.CrossEntropyLoss()
-            loss_rl = -criterion(self.logits_adv -
-                                 self.logits_clean, self.preds_clean) * self.weight_rl
-            loss_dict['rl'] = loss_rl
-            self.loss_rl = loss_rl
-
-        if 'ce' in self.opt.loss_type:
-            criterion = torch.nn.CrossEntropyLoss()
-            loss_ce = -criterion(self.logits_adv,
-                                 self.preds_clean) * self.weight_ce
-            loss_dict['ce'] = loss_ce
-            self.loss_ce = loss_ce
 
         if 'feat' in self.opt.loss_type:
 
@@ -277,14 +183,6 @@ class GeneratorModel(BaseModel):
                                           self.criterionfeat, SOFTMAX_2D=self.SOFTMAX_2D) * self.weight_feat
                 loss_dict['feat'] = loss_feat
                 self.loss_feat = loss_feat
-
-        if 'att' in self.opt.loss_type:
-            self.criterionAT = AT(self.opt.att_order)
-            loss_att = - \
-                attention_loss(self.feats_clean, self.feats_adv,
-                               self.criterionAT) * self.weight_att
-            loss_dict['att'] = loss_att
-            self.loss_att = loss_att
 
         self.loss_G = self.loss_G_L2 + self.loss_ce + \
             self.loss_rl + self.loss_feat + self.loss_att
@@ -301,8 +199,6 @@ class GeneratorModel(BaseModel):
 
     def optimize_parameters(self):
 
-        # ic(torch.mean(self.clean1).item())
-
         with torch.no_grad():
             self.logits_clean, self.feats_clean = self.classifier(
                 normalize_fn(self.clean1.detach()), return_feats=True)
@@ -316,9 +212,6 @@ class GeneratorModel(BaseModel):
         self.optimizer_G.zero_grad()
         loss_dict = self.backward_G()
 
-        # CHANGED
-        # torch.nn.utils.clip_grad_norm(self.netG.parameters(), 1.0)
-
         self.optimizer_G.step()
         return loss_dict
 
@@ -326,9 +219,7 @@ class GeneratorModel(BaseModel):
 
         for tag, parm in self.netG.named_parameters():
             self.writer.add_histogram(tag, parm.data.cpu().numpy(), iteration)
-
             if grad:
-
                 self.writer.add_histogram(tag + "_grad", parm.grad.data.cpu().numpy(), iteration)
 
     def save_clean_and_adv(self, epoch):
@@ -357,9 +248,6 @@ class GeneratorModel(BaseModel):
 
         if not os.path.exists(os.path.join(self.opt.detcfg.OUTPUT_DIR, 'images')):
             os.makedirs(os.path.join(self.opt.detcfg.OUTPUT_DIR, 'images'))
-
-        # save_image(self.adv1, os.path.join(self.opt.detcfg.OUTPUT_DIR, 'images',
-        #                                    'adv_{}.png'.format(self.iter)), nrow=4)
 
         self.iter += 1
 
