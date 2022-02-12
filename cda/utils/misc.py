@@ -26,7 +26,7 @@ def savefiles(save_dir, opt):
     # root_dir = save_dir.split("/")[:-2].join("/")
 
     root_dir = '/'.join([x for x in save_dir.split('/')[:-2]])
-    copy(os.path.join(root_dir, "train_gen3.py"), dst_folder)
+    #copy(os.path.join(root_dir, "train_gen3.py"), dst_folder)
 
     copy(os.path.join(root_dir, "train_gen.py"), dst_folder)
     copy(os.path.join(root_dir, "pix2pix/models",
@@ -35,8 +35,8 @@ def savefiles(save_dir, opt):
     copy(os.path.join(root_dir, "pix2pix/models",
                       "resnet_gen.py"), dst_folder)
 
-    output_file_name = "/../{}_{}_{}_run_{}.yaml".format(opt.train_dataset,
-                                                     opt.train_classifier, opt.loss_type, str(opt.run))
+    output_file_name = "/../{}_{}_{}.yaml".format(opt.train_dataset,
+                                                  opt.train_classifier, opt.loss_type)
 
     config_file = "{}_{}.yaml".format(opt.train_classifier, opt.train_dataset)
 
