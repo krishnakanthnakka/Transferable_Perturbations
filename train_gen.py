@@ -95,6 +95,7 @@ if __name__ == '__main__':
     opt.attackobjective = 'Blind'
     opt.input_nc = 3
 
+    opt.weight_L2 = 0
     opt.weight_ce = 1
     opt.weight_rl = 1
     opt.weight_att = 1
