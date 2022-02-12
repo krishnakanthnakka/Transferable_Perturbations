@@ -271,27 +271,6 @@ class GeneratorModel(BaseModel):
         self.netG.eval()
         logger = logging.getLogger("CDA.inference")
 
-        if self.opt.classifier_weights != '':
-            logger.info("*** Loading model from :{} *****".format(self.opt.classifier_weights))
-            checkpoint_classifier = torch.load(self.opt.classifier_weights)
-
-            if 'state_dict' in checkpoint_classifier.keys():
-                logger.info("Saved at epoch: {} with accu: {:.2f}%".format(
-                    checkpoint_classifier['epoch'], checkpoint_classifier['best_acc1'].item()))
-                self.eval_classifier.load_state_dict(checkpoint_classifier['state_dict'])
-            elif 'model' in checkpoint_classifier.keys():
-                logger.info("Saved at epoch: {} %".format(checkpoint_classifier['epoch']))
-                # self.eval_classifier = torch.nn.DataParallel(self.eval_classifier).cuda()
-                new_state_dict = {}
-                for key in checkpoint_classifier['model'].keys():
-                    str_ = key.replace("module.model.", "")
-                    new_state_dict[str_] = checkpoint_classifier['model'][key]
-
-                self.eval_classifier.load_state_dict(new_state_dict, strict=False)  # CHANGED DANGER
-
-            else:
-                self.eval_classifier.load_state_dict(checkpoint_classifier)
-
         self.eval_classifier.eval()
 
         eval_results, self.adv_predictions_eval = do_evaluation_adv(self.opt.detcfg,

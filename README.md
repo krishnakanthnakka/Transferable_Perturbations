@@ -134,7 +134,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 ### Results on SSD detectors
 
-1. We report mAP on PASCAL VOC test set before and after attack with generator trained against SqueezeNet discriminator (pretrained on ImageNet) and ImageNet data.
+1. We report mAP on PASCAL VOC test set before and after attack with generator trained against  discriminators (pretrained on ImageNet) and ImageNet data.
 
     | Train  | VGG16 | ResNet50 | EfficientNet | MobileNet |
     | :---:  | :---: | :---:     | :---:       | :---:     |
