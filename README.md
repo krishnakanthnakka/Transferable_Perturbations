@@ -1,7 +1,7 @@
 
 ## Introduction
 
-This is an official release of the paper **Learning Transferable Adversarial Perturbations**. The code is in early release and will be updated soon
+This is an official release of the paper **Learning Transferable Adversarial Perturbations**.
 
 
 ## Installation
