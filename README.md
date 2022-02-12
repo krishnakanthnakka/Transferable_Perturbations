@@ -4,10 +4,6 @@
 This is an official release of the paper **Learning Transferable Adversarial Perturbations**. The code is in early release and will be updated soon
 
 
-## ToDo
-
-- training scripts
-
 ## Installation
 
 1. It is tested with the following  packages:
@@ -58,6 +54,16 @@ This is an official release of the paper **Learning Transferable Adversarial Per
     ```
 
 2. We evaluate on 5K random samples from ImageNet val-set. We release the 5K samples in text file at ```cda/data/datasets/imagenet5k_val.txt```
+
+
+
+
+### Training
+
+1. To train generator against squeezenet classfier pretrained on imagenet
+   ```bash
+   bash scripts/imagenet/squeezenet.sh
+   ```
 
 
 ## Testing on Cross-Model Setting
@@ -120,12 +126,6 @@ This is an official release of the paper **Learning Transferable Adversarial Per
     |VGG16|  8.30|   11.8|   11.4 |   9.12 |
     |SqueezeNet1.1|  13.1|   10.8|   11.5 |   6.19 |
 
-
-
-
-## Training
-
-1.  ToDo
 
 ## Citation
 
