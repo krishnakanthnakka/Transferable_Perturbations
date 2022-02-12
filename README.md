@@ -39,6 +39,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 
 
+
 ### Data preparation
 
 1. The data structure of ```ImageNet``` looks like below:
@@ -89,7 +90,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 ### Results on ImageNet models
 
-1. We obberve the fooling rate metric (percentage of images for which label is flipped) on ImageNet5K val-set as in Table 1.
+1. We observe the fooling rate metric values (percentage of images for which label is flipped) on ImageNet5K val-set as in Table 1.
     | Train  | VGG16 | ResNet152 | Inceptionv3 | DenseNet121 | SqueezeNet1.1 | ShuffleNet  | MNASNet  |    MobileNet |
     | :---:  | :---: | :---:     | :---:       | :---:       | :---:      | :---:       |  :---:   |       :---:  |
     |  VGG16| 99.32% |68.38%    | 46.60%        |84.68%      | 86.52%     | 67.84%      | 90.44%   |   60.08%     |
@@ -157,4 +158,4 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 ## Acknowledgements
 
-This codebase is borrowed from multiple sources. We thank owner of [SSD](https://github.com/lufficc/SSD) for building a highly-modular pipeline.
+This codebase is borrowed from multiple sources. We thank owner of [SSD](https://github.com/lufficc/SSD) for building a highly-modular pipeline. We also thank the authors of [CSA](https://github.com/MasterBin-IIAU/CSA) for releasing their codebase.
