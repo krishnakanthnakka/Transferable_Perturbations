@@ -6,7 +6,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 ## Installation
 
-1. It is tested with the following  packages:
+1. It is tested with the following packages and hardware:
 
     ``` text
       PyTorch: 1.7.1+cu101
@@ -16,6 +16,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
       CUDNN: 7603
       NumPy: 1.18.1
       PIL: 7.0.0
+      GPU: Tesla V100-SXM2-32GB
    ```
 
 2. Download source code from GitHub
@@ -63,9 +64,9 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 
 
-### Training
+### Training Generators
 
-1. To train generator against squeezenet classfier pretrained on imagenet
+1. For example, we use folllowing command to train generator against ```squeezenet``` classfier pretrained on ```imagenet`` using feature separation loss
    ```bash
    bash scripts/imagenet/squeezenet.sh
    ```
