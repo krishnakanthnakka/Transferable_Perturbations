@@ -58,19 +58,15 @@ This is an official release of the paper **Learning Transferable Adversarial Per
     |   |   |── Action Comics v2
 
     ```
-
-2. We evaluate on 5K random samples from ImageNet val-set. We release the 5K samples in text file at ```cda/data/datasets/imagenet5k_val.txt```
-
-
+2. We evaluate on 5K random samples from ImageNet val-set. We release the 5K samples in text file at ```cda/data/datasets/imagenet5k_val.txt```.
 
 
 ### Training Generators
 
-1. For example, we use following command to train generator against ```squeezenet``` classfier pretrained on ```imagenet`` using feature separation loss
+1. For example, we use following command to train generator against ```squeezenet``` classfier pretrained on ```imagenet``` using feature separation loss
    ```bash
    bash scripts/imagenet/squeezenet.sh
    ```
-
 2. To train generator against another datasets, prepare the config file at ```cda/config/``` and put the images file at ```cda/data/datasets/```
 
 
@@ -93,7 +89,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 ### Results on ImageNet models
 
-1. We report fooling rate metric (percentage of images for which label is flipped) on ImageNet5K val-set.
+1. We obberve the fooling rate metric (percentage of images for which label is flipped) on ImageNet5K val-set as in Table 1.
     | Train  | VGG16 | ResNet152 | Inceptionv3 | DenseNet121 | SqueezeNet1.1 | ShuffleNet  | MNASNet  |    MobileNet |
     | :---:  | :---: | :---:     | :---:       | :---:       | :---:      | :---:       |  :---:   |       :---:  |
     |  VGG16| 99.32% |68.38%    | 46.60%        |84.68%      | 86.52%     | 67.84%      | 90.44%   |   60.08%     |
@@ -101,7 +97,6 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 
 ## Testing on Cross-Task Setting on SSD
-
 
 1. To run SSD experiments, first enter the  ```SSD``` folder and set paths to SSD library
    ```bash
@@ -133,7 +128,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 ### Results on SSD detectors
 
-1. We report mAP on PASCAL VOC test set before and after attack with generator trained against SqueezeNet discriminator and ImageNet data.
+1. We report mAP on PASCAL VOC test set before and after attack with generator trained against SqueezeNet discriminator (pretrained on ImageNet) and ImageNet data.
 
     | Train  | VGG16 | ResNet50 | EfficientNet | MobileNet |
     | :---:  | :---: | :---:     | :---:       | :---:     |
