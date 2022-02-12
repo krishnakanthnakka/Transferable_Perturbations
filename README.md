@@ -35,7 +35,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
    ```
     pip install -r requirements.txt
     ```
-6. Download pretrained generator checkpoints from our model zoo ([GoogleDrive](https://drive.google.com/drive/folders/1QkJh9EPGyq_LnzzU5mzpkBNhJFxIxGMu?usp=sharing)) and place them in the root folder
+6. Download pretrained generator checkpoints (Standard Black-box setting) from our model zoo ([GoogleDrive](https://drive.google.com/drive/folders/1QkJh9EPGyq_LnzzU5mzpkBNhJFxIxGMu?usp=sharing)) and place them in the root folder.
 
 
 
