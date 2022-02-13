@@ -35,14 +35,14 @@ This is an official release of the paper **Learning Transferable Adversarial Per
    ```
     pip install -r requirements.txt
     ```
-6. Download ```pretrained generator checkpoints``` (for white-box and standard black-box setting) from our model zoo ([GoogleDrive](https://drive.google.com/drive/folders/1QkJh9EPGyq_LnzzU5mzpkBNhJFxIxGMu?usp=sharing)) and place them in the root folder.
+6. We release  ```pretrained generator checkpoints``` (for white-box and standard black-box setting as in Table 1) on [GoogleDrive](https://drive.google.com/drive/folders/1QkJh9EPGyq_LnzzU5mzpkBNhJFxIxGMu?usp=sharing). Please place them in the root folder.
 
 
 
 
 ### Data preparation
 
-1. The data structure of ```ImageNet``` looks like below:
+1. The data structure of ```ImageNet```  or any other dataset looks like below. Please modify the dataloader at ```cda/data/datasets/image.py``` accordingly for your dataset structure
 
     ```text
     /datasets/
@@ -68,7 +68,9 @@ This is an official release of the paper **Learning Transferable Adversarial Per
    ```bash
    bash scripts/imagenet/squeezenet.sh
    ```
-2. To train generator against another datasets, prepare the config file at ```cda/config/``` and put the images file at ```cda/data/datasets/```
+2. To train generator against another datasets, prepare the config file at ```cda/config/``` and put the images path & label text file at ```cda/data/datasets/```
+
+3. To train generator against extreme cross-domain attack, we used the public chestxNet implementation available (here)[https://github.com/zoogzog/chexnet]
 
 
 ## Testing on Cross-Model Setting
@@ -158,4 +160,4 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 ## Acknowledgements
 
-This codebase is borrowed from multiple sources. We thank owner of [SSD](https://github.com/lufficc/SSD) for building a highly-modular pipeline. We also thank the authors of [CSA](https://github.com/MasterBin-IIAU/CSA) for releasing their codebase.
+This codebase is borrowed from multiple sources. We thank owner of [SSD](https://github.com/lufficc/SSD) for building a highly-modular pipeline. We also thank the authors of [CSA](https://github.com/MasterBin-IIAU/CSA) and (CDA)[https://github.com/Muzammal-Naseer/Cross-Domain-Perturbations/] for releasing their codebase.
