@@ -79,7 +79,7 @@ universal and transferable attack strategies.
 
 ### Training Generators
 
-1. For example, we use following command to train generator against ```squeezenet``` classfier pretrained on ```imagenet``` using feature separation loss
+1. For example, we use following command to train generator against ```squeezenet``` classfier pretrained on ```imagenet``` using feature separation loss. You can change the ```act_layer``` argument in the bash script to attack other layers.
    ```bash
    bash scripts/imagenet/squeezenet.sh
    ```
