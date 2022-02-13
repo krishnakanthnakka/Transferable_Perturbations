@@ -46,9 +46,10 @@ universal and transferable attack strategies.
    ```
     source activate LTP
    ```
-5. Install requirements
+5. Install requirements and set the paths
    ```
     pip install -r requirements.txt
+    source envs.sh
     ```
 6. We release  ```pretrained generator checkpoints``` (for white-box and standard black-box setting as in Table 1) on [GoogleDrive](https://drive.google.com/drive/folders/1QkJh9EPGyq_LnzzU5mzpkBNhJFxIxGMu?usp=sharing). Please place them in the root folder.
 
