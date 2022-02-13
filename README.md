@@ -2,6 +2,7 @@
 ## Introduction
 
 This is an official release of the paper **Learning Transferable Adversarial Perturbations**.
+![images](./images/teaser.png)
 
 
 ## Installation
@@ -106,7 +107,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
    source envs.sh
    ```
 2. Download and place the trained SSD models from [GoogleDrive](https://drive.google.com/drive/folders/13TLIHLjDh4IeSiA5vXIqnLpCOwNdzxI9?usp=sharing) and place in this SSD folder.
-   We used publicly available [SSD](https://github.com/lufficc/SSD) implementation to train models for 120K iterations.
+   We used publicly available [SSD](https://github.com/lufficc/SSD) implementation to train models for a maximum of 120K iterations. Please refer to that codebase to train more backbones and frameworks.
 
 3. Prepare the VOC dataset in ```datasets/2007``` and ```datasets/2012```
 
