@@ -70,7 +70,7 @@ This is an official release of the paper **Learning Transferable Adversarial Per
    ```
 2. To train generator against another datasets, prepare the config file at ```cda/config/``` and put the images path & label text file at ```cda/data/datasets/```
 
-3. To train generator against extreme cross-domain attack, we used the public chestxNet implementation available (here)[https://github.com/zoogzog/chexnet]
+3. To train generator against extreme cross-domain attack, we used the public chestxNet implementation available [here](https://github.com/zoogzog/chexnet)
 
 
 ## Testing on Cross-Model Setting
@@ -86,7 +86,6 @@ This is an official release of the paper **Learning Transferable Adversarial Per
    bash run_exps.sh  densenet121 imagenet feat
    bash run_exps.sh  resnet152 imagenet feat
    bash run_exps.sh  inception imagenet feat
-
    ```
 
 
