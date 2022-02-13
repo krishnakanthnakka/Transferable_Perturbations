@@ -159,4 +159,4 @@ This is an official release of the paper **Learning Transferable Adversarial Per
 
 ## Acknowledgements
 
-This codebase is borrowed from multiple sources. We thank owner of [SSD](https://github.com/lufficc/SSD) for building a highly-modular pipeline. We also thank the authors of [CSA](https://github.com/MasterBin-IIAU/CSA) and (CDA)[https://github.com/Muzammal-Naseer/Cross-Domain-Perturbations/] for releasing their codebase.
+This codebase is borrowed from multiple sources. We thank owner of [SSD](https://github.com/lufficc/SSD) for building a highly-modular pipeline. We also thank the authors of [CSA](https://github.com/MasterBin-IIAU/CSA) and [CDA](https://github.com/Muzammal-Naseer/Cross-Domain-Perturbations/) for releasing their codebase.
