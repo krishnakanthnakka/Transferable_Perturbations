@@ -4,7 +4,7 @@
 This is an official release of the paper **Learning Transferable Adversarial Perturbations**.
 ![images](./images/teaser.png)
 
-Abstract. While effective, deep neural networks (DNNs) are vulnerable to adversarial attacks.
+**Abstract.** While effective, deep neural networks (DNNs) are vulnerable to adversarial attacks.
 In particular, recent work has shown that such attacks could be generated
 by another deep network, leading to significant speedups over optimization-based
 perturbations. However, the ability of such generative methods to generalize to
