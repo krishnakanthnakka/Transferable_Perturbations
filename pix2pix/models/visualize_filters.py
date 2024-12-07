@@ -18,7 +18,7 @@ class SaveFeatures():
 
 
 class FilterVisualizer():
-    def __init__(self, size=56, upscaling_steps=12, upscaling_factor=1.2, model=None, normalize_fn=None, de_normalize_fn=None, save_path=None):
+    def __init__(self, size=56, upscaling_steps=9, upscaling_factor=1.2, model=None, normalize_fn=None, de_normalize_fn=None, save_path=None):
         self.size, self.upscaling_steps, self.upscaling_factor = size, upscaling_steps, upscaling_factor
         #self.model = vgg16(pre=True).cuda().eval()
 
@@ -32,7 +32,7 @@ class FilterVisualizer():
 
         #set_trainable(self.model, False)
 
-    def visualize(self, layer, filter_index, lr=0.1, opt_steps=20, blur=None):
+    def visualize(self, layer, filter_index, lr=1.0, opt_steps=200, blur=None):
         sz = self.size
 
         print("Layer: {}, Filter: {}".format(layer, filter_index))
