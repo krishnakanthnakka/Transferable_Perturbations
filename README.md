@@ -2,6 +2,8 @@
 ## Introduction
 
 This is an official release of the paper **Learning Transferable Adversarial Perturbations**.
+
+**Updated Work:** [NAT Project Page](https://krishnakanthnakka.github.io/NAT/) | [Pretrained Models on HuggingFace](https://huggingface.co/KKNakka/NAT)
 ![images](./images/teaser.png)
 
 **Abstract.** While effective, deep neural networks (DNNs) are vulnerable to adversarial attacks.
